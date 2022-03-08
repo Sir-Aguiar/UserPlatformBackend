@@ -5,11 +5,13 @@ interface Estudante {
   password: string;
   email: string;
   _class: string;
+  login:string;
 }
 class Student implements Estudante {
   public readonly id?: string;
   public name: string;
   public email: string;
+  public login: string;
   public password: string;
   public _class: string;
   constructor(studentData: Estudante, id?: string) {
@@ -17,6 +19,7 @@ class Student implements Estudante {
     this.name = studentData.name;
     this.email = studentData.email;
     this.password = studentData.password;
+    this.login = studentData.login;
     if (!id) {
       this.id = uuid();
     }

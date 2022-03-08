@@ -6,6 +6,7 @@ interface Professores {
   email: string;
   _classes: string[];
   discipline: string;
+  login: string;
 }
 class Professor implements Professores {
   public readonly id?: string;
@@ -13,6 +14,7 @@ class Professor implements Professores {
   public name: string;
   public email: string;
   public password: string;
+  public login: string;
   public _classes: string[];
   constructor(studentData: Professor, id?: string) {
     this._classes = studentData._classes;
@@ -20,6 +22,7 @@ class Professor implements Professores {
     this.email = studentData.email;
     this.password = studentData.password;
     this.discipline = studentData.discipline;
+    this.login = studentData.login;
     if (!id) {
       this.id = uuid();
     }

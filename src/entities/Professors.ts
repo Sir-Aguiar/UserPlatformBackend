@@ -16,6 +16,7 @@ class Professor implements Professores {
   public password: string;
   public login: string;
   public _classes: string[];
+
   constructor(studentData: Professor, id?: string) {
     this._classes = studentData._classes;
     this.name = studentData.name;

@@ -20,8 +20,8 @@ const FindStudentsByName = async (name: string) => {
     collection(Firestore, "Alunos"),
     where("Name", "==", name)
   );
-  const querySnapshot = await getDocs(classQuery);
-  const students: DocumentData[] = [];
+  const querySnapshot = await getDocs(classQuery) as QuerySnapshot<StudentOnDataBase>;
+  const students: StudentOnDataBase[] = [];
   querySnapshot.forEach((snapshot) => {
     students.push(snapshot.data());
   });

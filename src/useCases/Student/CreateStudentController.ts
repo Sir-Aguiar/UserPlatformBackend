@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { CreateStudent } from "./CreateStudent";
 
-function CreateStudentRequest(req: Request, res: Response) {
+const CreateStudentRequest = (req: Request, res: Response) => {
   const { name, password, email, _class, login } = req.body;
   CreateStudent({ name, password, _class, email, login })
     .then((response) => {

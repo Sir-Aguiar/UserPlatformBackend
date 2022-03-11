@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
-import { CheckProfessorBy_id } from "../GetProfessors";
+import { CheckProfessorValidity } from "./ValidateStudentController";
 import { getStudentsToValidate, ValidateStudent } from "./VallidateStudent";
 
 const GetStudentsToValidateRequest = async (req: Request, res: Response) => {
   const { _class } = req.params;
   const { professor_id } = req.headers;
 
-  if (await CheckProfessorBy_id(professor_id || "#####")) {
+  if (await CheckProfessorValidity(professor_id, _class)) {
     getStudentsToValidate(_class)
       .then((response) => {
         return res.status(200).json({
@@ -26,9 +26,10 @@ const GetStudentsToValidateRequest = async (req: Request, res: Response) => {
 };
 const ValidateStudentRequest = async (req: Request, res: Response) => {
   const { professor_id } = req.headers;
-  const { studentLogin, validateOption } = req.body;
 
-  if (await CheckProfessorBy_id(professor_id || "#####")) {
+  const { studentLogin, validateOption, _class } = req.body;
+
+  if (await CheckProfessorValidity(professor_id, _class)) {
     ValidateStudent(studentLogin, validateOption)
       .then((response) => {
         return res.status(200).json({

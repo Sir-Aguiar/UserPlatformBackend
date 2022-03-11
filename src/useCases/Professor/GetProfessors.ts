@@ -13,18 +13,7 @@ const FindProfessorByLogin = async (login: string) => {
   const docSnap = await getDoc(doc(Firestore, "Professores", login));
   return docSnap;
 };
-const CheckProfessorBy_id = async (_id: string|string[]) => {
-  const queryRef = query(
-    collection(Firestore, "Professores"),
-    where("_id", "==", _id)
-  );
-  const querySnap = await getDocs(queryRef);
-  let professorisValid: boolean = false;
-  querySnap.forEach((snap) => {
-    professorisValid = snap.exists();
-  });
-  return professorisValid;
-};
+
 const FindProfessorsByDiscipline = async (discipline: string) => {
   const queryRef = query(
     collection(Firestore, "Professores"),
@@ -38,5 +27,4 @@ const FindProfessorsByDiscipline = async (discipline: string) => {
 export {
   FindProfessorByLogin,
   FindProfessorsByDiscipline,
-  CheckProfessorBy_id,
 };

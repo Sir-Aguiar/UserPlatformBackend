@@ -1,5 +1,9 @@
 import express from "express";
 import { CreateProfessorRequest } from "./useCases/Professor/CreateProfessorController";
+import {
+  GetStudentsToValidateRequest,
+  ValidateStudentRequest,
+} from "./useCases/Professor/ValidateStudent/ValidateStudentRequest";
 import { CreateStudentRequest } from "./useCases/Student/CreateStudentController";
 import {
   GetStudentsByClassRequest,
@@ -16,3 +20,5 @@ app.post("/new-professor", CreateProfessorRequest);
 app.get("/stdlogin/:login", GetStudentsByLoginRequest);
 app.get("/stdname/:name", GetStudentsByNameRequest);
 app.get("/stdclass/:_class", GetStudentsByClassRequest);
+app.get("/stdvalidate/:_class", GetStudentsToValidateRequest);
+app.put("/validatestd", ValidateStudentRequest);

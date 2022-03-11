@@ -22,6 +22,7 @@ const CreateStudent = async (data: CreateStudentRequestDTO) => {
           Email: student.email,
           Class: student._class,
           Username: student.login,
+          Status: 1
         }
       );
       return insertedDoc;

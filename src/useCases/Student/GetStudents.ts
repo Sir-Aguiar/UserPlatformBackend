@@ -6,7 +6,9 @@ import {
   getDocs,
   doc,
   DocumentData,
+  QuerySnapshot,
 } from "firebase/firestore";
+import { StudentOnDataBase } from "../../database/entities/Student";
 import { Firestore } from "../../database/Firebase";
 const FindStudentByLogin = async (login: string) => {
   const docRef = doc(Firestore, "Alunos", login);
@@ -30,8 +32,10 @@ const FindStudentsByClass = async (_class: string) => {
     collection(Firestore, "Alunos"),
     where("Class", "==", _class)
   );
-  const querySnapshot = await getDocs(classQuery);
-  const students: DocumentData[] = [];
+  const querySnapshot = (await getDocs(
+    classQuery
+  )) as QuerySnapshot<StudentOnDataBase>;
+  const students: StudentOnDataBase[] = [];
   querySnapshot.forEach((snapshot) => {
     students.push(snapshot.data());
   });

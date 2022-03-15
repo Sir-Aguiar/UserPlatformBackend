@@ -22,7 +22,7 @@ const CreateProfessor = async (props: CreateProfessorDTO) => {
         Professores: arrayUnion({
           _id: _id || "#",
           Name: name,
-          Discipline: discipline,
+          Discipline: discipline
         }),
       }).then(() => {
         console.log("Inserido em ", _class);

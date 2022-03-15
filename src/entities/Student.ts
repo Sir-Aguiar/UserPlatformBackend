@@ -1,3 +1,4 @@
+import { FirestoreDataConverter } from "firebase/firestore";
 import { uuid } from "uuidv4";
 interface Estudante {
   id?: string;
@@ -25,4 +26,5 @@ class Student implements Estudante {
     }
   }
 }
+
 export { Estudante, Student };

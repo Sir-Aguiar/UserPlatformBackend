@@ -7,16 +7,16 @@ import {
   query,
   where,
 } from "firebase/firestore";
-import { Firestore } from "../../database/Firebase";
+import { UsersDatabase } from "../../database/Firebase";
 
 const FindProfessorByLogin = async (login: string) => {
-  const docSnap = await getDoc(doc(Firestore, "Professores", login));
+  const docSnap = await getDoc(doc(UsersDatabase, "Professores", login));
   return docSnap;
 };
 
 const FindProfessorsByDiscipline = async (discipline: string) => {
   const queryRef = query(
-    collection(Firestore, "Professores"),
+    collection(UsersDatabase, "Professores"),
     where("Discipline", "==", discipline)
   );
   const querySnap = await getDocs(queryRef);

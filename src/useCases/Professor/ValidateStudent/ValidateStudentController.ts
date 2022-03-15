@@ -6,11 +6,11 @@ import {
   QuerySnapshot,
 } from "firebase/firestore";
 import { ProfessorOnDataBase } from "../../../database/entities/Professor";
-import { Firestore } from "../../../database/Firebase";
+import { UsersDatabase } from "../../../database/Firebase";
 
 const CheckProfessorValidity = async (_id: string | string[] = "####",_class: string) => {
   const ProfessorQuery = query(
-    collection(Firestore, "Professores"),
+    collection(UsersDatabase, "Professores"),
     where("_id", "==", _id)
   );
   const ProfessorsSnapshot = (await getDocs(

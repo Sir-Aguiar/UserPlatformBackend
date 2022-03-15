@@ -1,6 +1,6 @@
 import { Student } from "../../entities/Student";
 import { CreateStudentRequestDTO } from "./CreateStudentDTO";
-import { Firestore } from "../../database/Firebase";
+import { UsersDatabase } from "../../database/Firebase";
 import { collection, addDoc, setDoc, doc } from "firebase/firestore";
 import { FindStudentByLogin } from "./GetStudents";
 
@@ -14,7 +14,7 @@ const CreateStudent = async (data: CreateStudentRequestDTO) => {
     try {
       // Setting new document (user) to database
       const insertedDoc = await setDoc(
-        doc(collection(Firestore, "Alunos"), student.login),
+        doc(collection(UsersDatabase, "Alunos"), student.login),
         {
           _id: student.id,
           Name: student.name,

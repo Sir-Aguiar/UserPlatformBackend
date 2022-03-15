@@ -1,6 +1,6 @@
 import { collection, doc, setDoc, updateDoc } from "firebase/firestore";
 import { StudentOnDataBase } from "../../../database/entities/Student";
-import { Firestore } from "../../../database/Firebase";
+import { UsersDatabase } from "../../../database/Firebase";
 import { FindStudentsByClass } from "../../Student/GetStudents";
 
 const getStudentsToValidate = async (_class: string) => {
@@ -15,7 +15,7 @@ const getStudentsToValidate = async (_class: string) => {
 };
 const ValidateStudent = async (studentLogin: string, state: number) => {
   try {
-    await updateDoc(doc(Firestore, "Alunos", studentLogin), {
+    await updateDoc(doc(UsersDatabase, "Alunos", studentLogin), {
       Status: state,
     });
   } catch (e) {

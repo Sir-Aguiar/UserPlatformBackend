@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import { CreateProfessorRequest } from "./useCases/Professor/CreateProfessorController";
 import { GetProfessorByLoginRequest, GetProfessorsByDisciplineRequest } from "./useCases/Professor/GetProfessorRequest";
 import {
@@ -12,6 +13,12 @@ import {
   GetStudentsByNameRequest,
 } from "./useCases/Student/GetStudentsController";
 const app = express();
+app.use(
+  cors({
+    origin: ["http://students-platform-06.herokuapp.com/"],
+    methods: ["GET", "POST", "PUT"],
+  })
+);
 app.use(express.json());
 app.listen(process.env.PORT || 3333, () => console.log(`Servidor iniciado em ${process.env.PORT || 3333}`));
 app.post("/new-student", CreateStudentRequest);

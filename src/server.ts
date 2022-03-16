@@ -12,6 +12,7 @@ import {
   GetStudentsByLoginRequest,
   GetStudentsByNameRequest,
 } from "./useCases/Student/GetStudentsController";
+import { GetClassesRequest } from "./useCases/GetClassesRequest";
 const app = express();
 app.use(
   cors({
@@ -30,3 +31,4 @@ app.get("/pfrlogin/:login", GetProfessorByLoginRequest);
 app.get("/prfdiscipline/:discipline", GetProfessorsByDisciplineRequest);
 app.get("/stdvalidate/:_class", GetStudentsToValidateRequest);
 app.put("/validatestd", ValidateStudentRequest);
+app.get("/getclasses", GetClassesRequest)

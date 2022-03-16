@@ -13,7 +13,7 @@ const GetStudentsController_1 = require("./useCases/Student/GetStudentsControlle
 const GetClassesRequest_1 = require("./useCases/GetClassesRequest");
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)({
-    origin: ["http://students-platform-06.herokuapp.com/"],
+    origin: "*",
     methods: ["GET", "POST", "PUT"],
 }));
 app.use(express_1.default.json());

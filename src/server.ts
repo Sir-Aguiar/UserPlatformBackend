@@ -16,7 +16,7 @@ import { GetClassesRequest } from "./useCases/GetClassesRequest";
 const app = express();
 app.use(
   cors({
-    origin: ["http://students-platform-06.herokuapp.com/"],
+    origin: ["*"],
     methods: ["GET", "POST", "PUT"],
   })
 );

@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "start": "tsnd --transpile-only --respawn --ignore-watch node_modules src/server.ts"
+    "start": "tsnd --transpile-only --respawn --ignore-watch node_modules src/server.ts",
+    "deploy": "node build/server.js"
   },
   "dependencies": {
     "@types/dotenv": "^8.2.0",

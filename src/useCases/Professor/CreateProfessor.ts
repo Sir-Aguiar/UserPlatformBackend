@@ -10,7 +10,7 @@ const CreateProfessor = async (props: CreateProfessorDTO) => {
   if ((await FindProfessorByLogin(props.login)).exists()) {
     throw new Error("Username already taken");
   }
-  const InserProfessorInClasses = async (
+  const InsertProfessorInClasses = async (
     name: string,
     _id: string | undefined,
     discipline: string,
@@ -40,7 +40,7 @@ const CreateProfessor = async (props: CreateProfessorDTO) => {
         Username: professor.login,
         Discipline: professor.discipline,
       });
-      await InserProfessorInClasses(professor.name, professor.id, professor.discipline, professor._classes);
+      await InsertProfessorInClasses(professor.name, professor.id, professor.discipline, professor._classes);
       return insertedDoc;
     } catch (e) {
       throw new Error("Insuficient information");

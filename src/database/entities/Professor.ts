@@ -1,5 +1,6 @@
 export interface ProfessorOnDataBase{
   Classes:string[];  
+  Discipline:string;
   Email:string;
   Name:string;
   Password:string;

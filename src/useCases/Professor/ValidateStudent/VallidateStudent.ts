@@ -16,7 +16,7 @@ const getStudentsToValidate = async (_class: string) => {
 const ValidateStudent = async (studentLogin: string, state: number) => {
   const InsertStudentToClass = async () => {
     const studentToValidate = await getDoc(doc(UsersDatabase, "Alunos", studentLogin).withConverter(studentConverter));
-    await updateDoc(doc(UsersDatabase, "Turmas", studentToValidate.data()?.Class || "#"), {
+    await updateDoc(doc(UsersDatabase, "Turmas", studentToValidate.data()?.Class || "ZZ#"), {
       Alunos: arrayUnion({
         _id: studentToValidate.data()?._id,
         Name: studentToValidate.data()?.Name,

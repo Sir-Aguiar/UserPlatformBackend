@@ -20,5 +20,7 @@ app.post("/new-professor", CreateProfessorRequest);
 app.get("/stdlogin/:login", GetStudentsByLoginRequest);
 app.get("/stdname/:name", GetStudentsByNameRequest);
 app.get("/stdclass/:_class", GetStudentsByClassRequest);
+app.get("/pfrlogin/:login", GetStudentsByClassRequest);
+app.get("/pfrclass/:_class", GetStudentsByClassRequest);
 app.get("/stdvalidate/:_class", GetStudentsToValidateRequest);
 app.put("/validatestd", ValidateStudentRequest);

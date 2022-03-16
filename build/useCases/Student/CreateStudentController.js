@@ -13,10 +13,10 @@ const CreateStudentRequest = (req, res) => {
         return;
     })
         .catch((e) => {
-        return res.status(400).json({
-            message: e.message,
-            error: e.name,
-        });
+        if (e.message == "Username already taken") {
+            return res.status(401).send();
+        }
+        res.status(400).send();
     });
 };
 exports.CreateStudentRequest = CreateStudentRequest;

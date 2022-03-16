@@ -23,7 +23,7 @@ app.use(
 app.use(express.json());
 app.listen(process.env.PORT || 3333, () => console.log(`Servidor iniciado em ${process.env.PORT || 3333}`));
 app.post("/new-student", CreateStudentRequest);
-app.post("/new-professor", CreateProfessorRequest);
+/* app.post("/new-professor", CreateProfessorRequest); */
 app.get("/stdlogin/:login", GetStudentsByLoginRequest);
 app.get("/stdname/:name", GetStudentsByNameRequest);
 app.get("/stdclass/:_class", GetStudentsByClassRequest);

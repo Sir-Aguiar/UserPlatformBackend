@@ -33,5 +33,16 @@ const FindProfessorsByDiscipline = async (discipline: string) => {
     throw new Error("There was an unknown error");
   }
 };
-
-export { FindProfessorByLogin, FindProfessorsByDiscipline };
+const FindStudentByEmail = async (email: string) => {
+  const docRef = collection(UsersDatabase, "Professores");
+  const docQuery = where("Email", "==", email);
+  const foundDocs = await getDocs(query(docRef, docQuery));
+  const documents: DocumentData[] = [];
+  foundDocs.forEach((doc) => {
+    if (doc.exists()) {
+      documents.push(doc.data());
+    }
+  });
+  return documents;
+};
+export { FindProfessorByLogin, FindProfessorsByDiscipline,FindStudentByEmail };

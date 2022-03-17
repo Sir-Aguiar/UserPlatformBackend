@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.FindProfessorsByDiscipline = exports.FindProfessorByLogin = void 0;
+exports.FindStudentByEmail = exports.FindProfessorsByDiscipline = exports.FindProfessorByLogin = void 0;
 const firestore_1 = require("firebase/firestore");
 const Firebase_1 = require("../../database/Firebase");
 const FindProfessorByLogin = async (login) => {
@@ -26,3 +26,16 @@ const FindProfessorsByDiscipline = async (discipline) => {
     }
 };
 exports.FindProfessorsByDiscipline = FindProfessorsByDiscipline;
+const FindStudentByEmail = async (email) => {
+    const docRef = (0, firestore_1.collection)(Firebase_1.UsersDatabase, "Professores");
+    const docQuery = (0, firestore_1.where)("Email", "==", email);
+    const foundDocs = await (0, firestore_1.getDocs)((0, firestore_1.query)(docRef, docQuery));
+    const documents = [];
+    foundDocs.forEach((doc) => {
+        if (doc.exists()) {
+            documents.push(doc.data());
+        }
+    });
+    return documents;
+};
+exports.FindStudentByEmail = FindStudentByEmail;

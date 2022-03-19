@@ -28,7 +28,11 @@ const CreateStudent = async (data) => {
             };
             const docRef = (0, firestore_1.doc)((0, firestore_1.collection)(Firebase_1.UsersDatabase, "Alunos"), student.login);
             (0, firestore_1.setDoc)(docRef, studentInfos).then((res) => {
-                (0, auth_1.createUserWithEmailAndPassword)(auth, student.email, student.password).catch((e) => {
+                (0, auth_1.createUserWithEmailAndPassword)(auth, student.email, student.password)
+                    .then((res) => {
+                    (0, auth_1.sendEmailVerification)(res.user).then();
+                })
+                    .catch((e) => {
                     return e.message;
                 });
                 return;

@@ -10,6 +10,7 @@ const ValidateStudentRequest_1 = require("./useCases/Professor/ValidateStudent/V
 const CreateStudentController_1 = require("./useCases/Student/CreateStudentController");
 const GetStudentsController_1 = require("./useCases/Student/GetStudentsController");
 const GetClassesRequest_1 = require("./useCases/GetClassesRequest");
+const LoginRequest_1 = require("./useCases/Login/LoginRequest");
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)({
     origin: "*",
@@ -27,3 +28,4 @@ app.get("/prfdiscipline/:discipline", GetProfessorRequest_1.GetProfessorsByDisci
 app.get("/stdvalidate/:_class", ValidateStudentRequest_1.GetStudentsToValidateRequest);
 app.put("/validatestd", ValidateStudentRequest_1.ValidateStudentRequest);
 app.get("/getclasses", GetClassesRequest_1.GetClassesRequest);
+app.get("/login/:email/:password", LoginRequest_1.LoginStudentRequest);

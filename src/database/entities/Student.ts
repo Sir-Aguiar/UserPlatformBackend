@@ -1,15 +1,7 @@
 import { FirestoreDataConverter, QueryDocumentSnapshot } from "firebase/firestore";
+import { StudentOnDataBase } from "../DataBaseTypes";
 
-export interface StudentOnDataBase {
-  _id: string;
-  Name: string;
-  Password: string;
-  Email: string;
-  Class: string;
-  Username: string;
-  Status: number;
-}
-class StudentModel {
+class StudentModel implements StudentOnDataBase{
   readonly _id: string;
   readonly Name: string;
   readonly Password: string;
@@ -26,10 +18,13 @@ class StudentModel {
     this.Status = props.Status;
     this.Username = props.Username;
   }
+  public AA () {
+
+  }
 }
 
-export const studentConverter: FirestoreDataConverter<StudentModel> = {
-  toFirestore: (student: StudentModel) => {
+const studentConverter: FirestoreDataConverter<StudentModel> = {
+  toFirestore: (student) => {
     return {
       Class: student.Class,
       Email: student.Email,
@@ -40,8 +35,10 @@ export const studentConverter: FirestoreDataConverter<StudentModel> = {
       _id: student._id,
     };
   },
-  fromFirestore: (snapshot: QueryDocumentSnapshot<StudentModel>, options) => {
+  fromFirestore: (snapshot: QueryDocumentSnapshot<StudentOnDataBase>, options) => {
     const formatedData = snapshot.data(options);
-    return new StudentModel(formatedData);
+    const formatedObject = new StudentModel(formatedData)
+    return formatedObject;
   },
 };
+export { studentConverter };

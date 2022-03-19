@@ -1,5 +1,5 @@
 import { collection, where, query, getDoc, getDocs, doc, DocumentData, QuerySnapshot } from "firebase/firestore";
-import { StudentOnDataBase } from "../../database/entities/Student";
+import { StudentOnDataBase } from "../../database/DataBaseTypes";
 import { UsersDatabase } from "../../database/Firebase";
 const FindStudentByLogin = async (login: string) => {
   const docRef = doc(UsersDatabase, "Alunos", login);

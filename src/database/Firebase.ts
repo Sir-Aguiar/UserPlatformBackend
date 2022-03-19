@@ -12,11 +12,7 @@ const UsersDataBaseConfig = {
   measurementId: process.env.MEASUREMENTID,
 };
 
-
-
 const FirebaseApp = initializeApp(UsersDataBaseConfig);
 const UsersDatabase = getFirestore(FirebaseApp);
-
-
 
 export { FirebaseApp, UsersDatabase};

@@ -5,7 +5,7 @@ import {
   query,
   QuerySnapshot,
 } from "firebase/firestore";
-import { ProfessorOnDataBase } from "../../../database/entities/Professor";
+import { ProfessorOnDataBase } from "../../../database/DataBaseTypes";
 import { UsersDatabase } from "../../../database/Firebase";
 
 const CheckProfessorValidity = async (_id: string | string[] = "####",_class: string) => {

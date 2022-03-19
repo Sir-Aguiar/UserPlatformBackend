@@ -1,5 +1,6 @@
 import { arrayUnion, collection, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
-import { studentConverter, StudentOnDataBase } from "../../../database/entities/Student";
+import { StudentOnDataBase } from "../../../database/DataBaseTypes";
+import { studentConverter} from "../../../database/entities/Student";
 import { UsersDatabase } from "../../../database/Firebase";
 import { FindStudentsByClass } from "../../Student/GetStudents";
 

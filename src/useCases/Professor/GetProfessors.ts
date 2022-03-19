@@ -10,7 +10,7 @@ import {
   QuerySnapshot,
   where,
 } from "firebase/firestore";
-import { ProfessorOnDataBase } from "../../database/entities/Professor";
+import { ProfessorOnDataBase } from "../../database/DataBaseTypes";
 import { UsersDatabase } from "../../database/Firebase";
 
 const FindProfessorByLogin = async (login: string) => {

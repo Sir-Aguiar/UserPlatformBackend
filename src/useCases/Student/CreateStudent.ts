@@ -3,6 +3,8 @@ import { CreateStudentRequestDTO } from "./CreateStudentDTO";
 import { UsersDatabase } from "../../database/Firebase";
 import { collection, addDoc, setDoc, doc } from "firebase/firestore";
 import { FindStudentByEmail, FindStudentByLogin } from "./GetStudents";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+const auth = getAuth();
 const CreateStudent = async (data: CreateStudentRequestDTO) => {
   const student = new Student(data);
   const insertStudentToDatabase = async () => {
@@ -23,8 +25,12 @@ const CreateStudent = async (data: CreateStudentRequestDTO) => {
         Status: 1,
       };
       const docRef = doc(collection(UsersDatabase, "Alunos"), student.login);
-      const insertedDoc = await setDoc(docRef, studentInfos);
-      return insertedDoc;
+      setDoc(docRef, studentInfos).then((res) => {
+        createUserWithEmailAndPassword(auth, student.email, student.password).catch((e) => {
+          return e.message
+        });
+        return;
+      });
     } catch (e) {
       throw new Error("Insuficient information");
     }

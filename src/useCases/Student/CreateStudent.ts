@@ -3,7 +3,7 @@ import { CreateStudentRequestDTO } from "./CreateStudentDTO";
 import { UsersDatabase } from "../../database/Firebase";
 import { collection, addDoc, setDoc, doc } from "firebase/firestore";
 import { FindStudentByEmail, FindStudentByLogin } from "./GetStudents";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 const auth = getAuth();
 const CreateStudent = async (data: CreateStudentRequestDTO) => {
   const student = new Student(data);
@@ -26,9 +26,13 @@ const CreateStudent = async (data: CreateStudentRequestDTO) => {
       };
       const docRef = doc(collection(UsersDatabase, "Alunos"), student.login);
       setDoc(docRef, studentInfos).then((res) => {
-        createUserWithEmailAndPassword(auth, student.email, student.password).catch((e) => {
-          return e.message
-        });
+        createUserWithEmailAndPassword(auth, student.email, student.password)
+          .then((res) => {
+            sendEmailVerification(res.user).then();
+          })
+          .catch((e) => {
+            return e.message;
+          });
         return;
       });
     } catch (e) {

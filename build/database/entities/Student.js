@@ -11,8 +11,10 @@ class StudentModel {
         this.Status = props.Status;
         this.Username = props.Username;
     }
+    AA() {
+    }
 }
-exports.studentConverter = {
+const studentConverter = {
     toFirestore: (student) => {
         return {
             Class: student.Class,
@@ -26,6 +28,8 @@ exports.studentConverter = {
     },
     fromFirestore: (snapshot, options) => {
         const formatedData = snapshot.data(options);
-        return new StudentModel(formatedData);
+        const formatedObject = new StudentModel(formatedData);
+        return formatedObject;
     },
 };
+exports.studentConverter = studentConverter;

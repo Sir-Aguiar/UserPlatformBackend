@@ -5,6 +5,8 @@ const Student_1 = require("../../entities/Student");
 const Firebase_1 = require("../../database/Firebase");
 const firestore_1 = require("firebase/firestore");
 const GetStudents_1 = require("./GetStudents");
+const auth_1 = require("firebase/auth");
+const auth = (0, auth_1.getAuth)();
 const CreateStudent = async (data) => {
     const student = new Student_1.Student(data);
     const insertStudentToDatabase = async () => {
@@ -25,8 +27,12 @@ const CreateStudent = async (data) => {
                 Status: 1,
             };
             const docRef = (0, firestore_1.doc)((0, firestore_1.collection)(Firebase_1.UsersDatabase, "Alunos"), student.login);
-            const insertedDoc = await (0, firestore_1.setDoc)(docRef, studentInfos);
-            return insertedDoc;
+            (0, firestore_1.setDoc)(docRef, studentInfos).then((res) => {
+                (0, auth_1.createUserWithEmailAndPassword)(auth, student.email, student.password).catch((e) => {
+                    return e.message;
+                });
+                return;
+            });
         }
         catch (e) {
             throw new Error("Insuficient information");

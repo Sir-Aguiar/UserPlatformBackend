@@ -3,17 +3,14 @@ import { CreateStudentRequestDTO } from "./CreateStudentDTO";
 import { UsersDatabase } from "../../database/Firebase";
 import { collection, addDoc, setDoc, doc } from "firebase/firestore";
 import { FindStudentByEmail, FindStudentByLogin } from "./GetStudents";
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
-const auth = getAuth();
 const CreateStudent = async (data: CreateStudentRequestDTO) => {
   const student = new Student(data);
   const insertStudentToDatabase = async () => {
-    // Check if a user with the login already exists
     if ((await FindStudentByLogin(student.login)).exists()) {
-      throw new Error("Username already taken");
+      throw new Error("Nome de usuário já está em uso");
     }
     if ((await FindStudentByEmail(data.email)).length > 0) {
-      throw new Error("Email already taken");
+      throw new Error("Email já está em uso");
     }
     try {
       const studentInfos = {
@@ -27,12 +24,7 @@ const CreateStudent = async (data: CreateStudentRequestDTO) => {
       };
       const docRef = doc(collection(UsersDatabase, "Alunos"), student.login);
       const insertedDoc = await setDoc(docRef, studentInfos);
-      try {
-        const credential = await createUserWithEmailAndPassword(auth, data.email, data.password);
-        return credential.user;
-      } catch (err) {
-        throw new Error("Email already taken");
-      }
+      return insertedDoc;
     } catch (e) {
       throw new Error("Insuficient information");
     }

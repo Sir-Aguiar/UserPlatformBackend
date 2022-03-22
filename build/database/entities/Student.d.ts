@@ -9,7 +9,6 @@ declare class StudentModel implements StudentOnDataBase {
     readonly Username: string;
     readonly Status: number;
     constructor(props: StudentOnDataBase);
-    AA(): void;
 }
 declare const studentConverter: FirestoreDataConverter<StudentModel>;
 export { studentConverter };

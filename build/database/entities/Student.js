@@ -11,8 +11,6 @@ class StudentModel {
         this.Status = props.Status;
         this.Username = props.Username;
     }
-    AA() {
-    }
 }
 const studentConverter = {
     toFirestore: (student) => {

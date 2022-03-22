@@ -18,9 +18,7 @@ class StudentModel implements StudentOnDataBase{
     this.Status = props.Status;
     this.Username = props.Username;
   }
-  public AA () {
 
-  }
 }
 
 const studentConverter: FirestoreDataConverter<StudentModel> = {

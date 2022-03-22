@@ -30,5 +30,5 @@ app.get("/stdclass/:_class", GetStudentsByClassRequest);
 app.get("/pfrlogin/:login", GetProfessorByLoginRequest);
 app.get("/prfdiscipline/:discipline", GetProfessorsByDisciplineRequest);
 app.get("/stdvalidate/:_class", GetStudentsToValidateRequest);
-app.put("/validatestd", ValidateStudentRequest);
 app.get("/getclasses", GetClassesRequest);
+app.put("/validatestd", ValidateStudentRequest);
